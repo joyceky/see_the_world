@@ -1,0 +1,27 @@
+{
+  "name": "urbn_code_challenge",
+  "version": "1.0.0",
+  "description": "Google Maps / Flickr / Palette Maker mashup",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joyceky/urbn_code_challenge.git"
+  },
+  "keywords": [
+    "photos",
+    "palette",
+    "geolocation"
+  ],
+  "author": "KJoyce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joyceky/urbn_code_challenge/issues"
+  },
+  "homepage": "https://github.com/joyceky/urbn_code_challenge#readme",
+  "dependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
