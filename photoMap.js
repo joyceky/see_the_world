@@ -42,6 +42,8 @@ function displayImages(data){
     // Create the resulting img tag for each photo 
     var htmlString = '<img src="' + photoURL + '">';					
     console.log(htmlString, "HTML STRING");
+
+    $(htmlString).appendTo('#images');
     });					
   } 
 
