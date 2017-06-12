@@ -4,11 +4,15 @@ const FLICKR_API_KEY = "97690e43438d1a5f0402a1ffa7c557fd";
 const FLICKR_SECRET = "b644c1c1861cb8f7";
 const GMAPS_API_KEY = "AIzaSyA6t4HGkRl-ZJxvpSHleNmFDlQyem-Eh5I";
 
-const tags = ["nature", "travel", "trees", "island", "life", "explore", "adventure", "water", "fashion", "style", "beautiful", "photography", "fish", "light", "sports", "inspiring", "food", "sunset", "sky", "wildlife", "snow", "fashion", "fields", "hike", "happiness", "animals", "kittens", "city", "forest", "beach", "mountain", "sunshine", "rain", "puppy", "puppies"];
+const tags = ["nature", "joy", "landscape", "beautiful", "outdoor", "green", "view", "light", "lines", "nature", "rural", "vacation", "love", "pride", "travel", "trees", "island", "life", "explore", "adventure", "water", "fashion", "style", "beautiful", "photography", "fish", "light", "inspiring", "food", "sunset", "sky", "wildlife", "snow", "fashion", "fields", "hike", "happiness", "animals", "kittens", "city", "forest", "beach", "mountain", "sunshine", "rain", "puppy", "puppies"];
 
 var lat = 39.9526;
 var long = -75.1652;
 var map;
+
+var imageDetail = $("#imageDetail");
+var noPhotosAlert = $("#noPhotosAlert");
+
 
 initMap();
 
@@ -65,11 +69,11 @@ function initMap() {
 }
 
 function getImages(lat, long) {
-    $("#noPhotos").fadeOut();
-    $("#noPhotos").empty();
+    noPhotosAlert.fadeOut();
+    noPhotosAlert.empty();
 
     $.ajax({
-        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&lat=" + lat + "&lon=" + long + "&per_page=150&format=json&jsoncallback=?",
+        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&lat=" + lat + "&lon=" + long + "&per_page=100&format=json&jsoncallback=?",
         type: "GET",
         dataType: 'jsonp',
         success: function (data) {
@@ -78,15 +82,15 @@ function getImages(lat, long) {
             if (data.photos.photo.length == 0) {
                 // If there are no photos, display stock photos from a variety of tags and alert user
                 $.ajax({
-                    url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&tags=" + tags[Math.floor(Math.random() * tags.length+1) + 1]+ "&per_page=50&format=json&jsoncallback=?",
+                    url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&tags=" + tags[Math.floor(Math.random() * tags.length+1) + 1]+ "&per_page=100&format=json&jsoncallback=?",
                     type: "GET",
                     dataType: "jsonp",
                     success: function (data) {
                         console.log("Images successfully retrieved: ", data);
                         
-                        var htmlString = '<p>No photos in this location. Keep clicking to see the world!</p>';					
-                        $(htmlString).appendTo("#noPhotos");
-                        $("#noPhotos").fadeIn();
+                        var htmlString = '<p>No photos tagged in this location. Keep clicking to see the world!</p>';					
+                        $(htmlString).appendTo(noPhotosAlert);
+                        noPhotosAlert.fadeIn();
 
                         displayImages(data);
                     },
@@ -147,7 +151,24 @@ function displayImages(data){
         // console.log(htmlString, "HTML STRING");
 
         $(htmlString).appendTo("#photos");
-    })	
+    });	
     
-    $('#photos').fadeIn(1000);			
+    $('#photos').fadeIn(1000);	
+
+	
   } 
+
+function showDetail(URL) {
+    imageDetail.empty();
+    var imageString = '<img class="image" src="' + URL + '">';					
+
+    $(imageString).appendTo("#imageDetail");
+    imageDetail.show();
+}
+
+function toggleDetail() {
+    if (imageDetail.is(":visible")) {
+        imageDetail.empty();
+        imageDetail.hide();
+    }
+}

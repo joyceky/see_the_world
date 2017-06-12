@@ -7,8 +7,10 @@
   </head>
   <body>
     <div id="map"></div>
-    <div id="noPhotos"></div>
-    <div id="photos"></div>
+    <div id="noPhotosAlert"></div>
+    <div id="photos" onclick="showDetail(event.target.id);"></div>
+
+    <div id="imageDetail" onclick="toggleDetail();"></div>
 
     <!-- Google Maps API -->
     <script defer type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6t4HGkRl-ZJxvpSHleNmFDlQyem-Eh5I&callback=initMap"></script>
