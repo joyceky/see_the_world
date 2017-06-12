@@ -10,7 +10,6 @@ var lat = 39.9526;
 var long = -75.1652;
 var map;
 
-
 initMap();
 
 function initMap() {
@@ -57,7 +56,7 @@ function initMap() {
 
 function getImages(lat, long) {
     $.ajax({
-        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&lat=" + lat + "&lon=" + long + "&per_page=50&format=json&jsoncallback=?",
+        url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&lat=" + lat + "&lon=" + long + "&per_page=150&format=json&jsoncallback=?",
         type: "GET",
         dataType: 'jsonp',
         success: function (data) {
@@ -93,7 +92,7 @@ function geocodeLatLng(geocoder, map, infowindow, lat, long) {
 
 function displayImages(data){
     // Clear the images from the previous photo array
-    $('#images').empty();
+    $('#photos').empty();
 
     if(data.photos.photo.length == 0) {
         // If there are no photos, display stock photos from a variety of tags for user
@@ -101,32 +100,32 @@ function displayImages(data){
         $.ajax({
             url: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=" + FLICKR_API_KEY + "&tags=" + tags[Math.floor(Math.random() * tags.length+1) + 1]+ "&per_page=50&format=json&jsoncallback=?",
             type: "GET",
-            dataType: 'jsonp',
+            dataType: "jsonp",
             success: function (data) {
-                console.log("Images successfully retrieved", data);
+                console.log("Images successfully retrieved: ", data);
                 displayImages(data);
             },
             fail: function (err) {
-                console.log('Error: ' + err.status);
+                console.log("Error retrieving images: " + err.status);
             }
         });
     }
 
 	// Loop through each photo in the resulting photo array
-    $.each(data.photos.photo, function(i,item){
+    $.each(data.photos.photo, function(i, photo){
 
         // Store the latitude and longitude of the current photo
-        lat = item.latitude;
-        long = item.longitude;
+        lat = photo.latitude;
+        long = photo.longitude;
         
         // Create the url for the current photo 
-        var photoURL = 'http://farm' + item.farm + '.static.flickr.com/' + item.server + '/' + item.id + '_' + item.secret + '_m.jpg';		
+        var photoURL = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + '_' + photo.secret + '_m.jpg';		
         // console.log(photoURL, "PHOTO URL");
 
         // Create the resulting img tag for each photo 
-        var htmlString = '<a href="' + photoURL + '"><img src="' + photoURL + '"></a>';					
+        var htmlString = '<img class="image" id="' + photoURL + '" src="' + photoURL + '">';					
         // console.log(htmlString, "HTML STRING");
 
-        $(htmlString).appendTo('#images');
+        $(htmlString).appendTo("#photos");
     });					
   } 
