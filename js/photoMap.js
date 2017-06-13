@@ -43,7 +43,7 @@ function initMap() {
         map: map
     });
 
-    // The reverse-geocoder and infowindow the display geocode results are initialized
+    // The reverse-geocoder and infowindow that displays geocode results are initialized
     var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow;
     
@@ -65,8 +65,6 @@ function initMap() {
                 var coordinates = event.latLng;
                 lat = (coordinates.lat()).toFixed(6);
                 long = (coordinates.lng()).toFixed(6);
-
-                // console.log("Lat: ", lat, "Long: ", long);
 
                 new google.maps.Marker({
                     position: coordinates,
