@@ -1,28 +1,39 @@
-#nav {
-    width: 100%;
-    height: 30px;
-    background-color: #A3CCFF;
-    font-size: 22px;
-    font-weight: bold;  
-    display: flex;
-    justify-content: space-between; 
-}
-
-#nav span {
-    padding-top: 5px;
-}
-
-#nav a {
-    text-decoration: none;
-    color: #f7584c;
-    margin: 0 100px 0 100px;
-}
-
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     font-family: 'Josefin Sans', sans-serif;
+    background-color: #A3CCFF;
+}
+
+#wrapper {
+    min-height: 900px;
+}
+
+#nav {
+    width: 100%;
+    background-color: #A3CCFF;
+    font-size: 1.5em;
+    font-weight: bold;  
+    display: flex;
+    justify-content: space-between; 
+    padding: 1% 0 1% 0;
+    border: 1px solid #f7584c;
+    text-align: center; 
+}
+
+#nav span {
+    margin: 20%;
+}
+
+#nav a {
+    text-decoration: none;
+    color: #f7584c;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
 }
 
 #map {
@@ -31,18 +42,22 @@ body {
 }
 
 #noPhotosAlert {
-    width: 100%;
+    width: 100vw;
     text-align: center;
+}
+
+#photoContainer {
+    height: inherit;
 }
 
 #photos {
     line-height: 0;
     -webkit-column-count: 5;
-    -webkit-column-gap:   0px;
+    -webkit-column-gap:   0;
     -moz-column-count:    5;
-    -moz-column-gap:      0px;
+    -moz-column-gap:      0;
     column-count:         5;
-    column-gap:           0px;  
+    column-gap:           0;  
 }
 
 #photos img {
@@ -65,9 +80,14 @@ body {
 }
 
 #imageDetail img {
-    /*position: absolute;*/
-    padding-top: 100px;
-    width: 350px;
+    padding-top: 2%;
+    width: 35%;
+}
+
+#imageDetail p {
+    padding-top: 3%;
+    font-size: 1.6em;
+    color: #FFFFFF;
 }
 
 @media (max-width: 1200px) {
@@ -100,12 +120,30 @@ body {
 }
 
 #aboutContainer {
-    padding: 25px;
+    padding: 6%;
     margin: 0 auto;
     text-align: center;
     width: 70%;
 }
 
 #aboutContainer img {
+    padding: 4%;
     width: 75%;
 }
+
+#footer {
+    width: 100%;
+    background-color:#f7584c;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: space-between; 
+    text-align: center; 
+    padding: 1% 0 1% 0;
+    color: #FFFFFF;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #A3CCFF;
+}
+
