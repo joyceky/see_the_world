@@ -42,8 +42,15 @@ body {
 }
 
 #noPhotosAlert {
-    width: 100vw;
+    display: none;
+    width: 100%;
+    height: 6vh; 
     text-align: center;
+    background-color: #FFFFFF; 
+}
+
+#noPhotosAlert p {
+    padding: 1% 0 1% 0;
 }
 
 #photoContainer {
