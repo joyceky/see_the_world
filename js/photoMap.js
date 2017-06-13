@@ -4,7 +4,7 @@ const FLICKR_API_KEY = "97690e43438d1a5f0402a1ffa7c557fd";
 const FLICKR_SECRET = "b644c1c1861cb8f7";
 const GMAPS_API_KEY = "AIzaSyA6t4HGkRl-ZJxvpSHleNmFDlQyem-Eh5I";
 
-const tags = ["nature", "joy", "landscape", "beautiful", "outdoor", "green", "view", "light", "lines", "nature", "rural", "vacation", "love", "pride", "travel", "trees", "island", "life", "explore", "adventure", "water", "fashion", "style", "beautiful", "photography", "fish", "light", "inspiring", "food", "sunset", "sky", "wildlife", "snow", "fashion", "fields", "hike", "happiness", "animals", "kittens", "city", "forest", "beach", "mountain", "sunshine", "rain", "puppy", "puppies"];
+const tags = ["nature", "joy", "world", "landscape", "wander", "beautiful", "outdoor", "green", "view", "light", "lines", "nature", "rural", "vacation", "love", "pride", "travel", "trees", "island", "life", "explore", "adventure", "water", "fashion", "style", "beautiful", "photography", "fish", "light", "inspiring", "food", "sunset", "sky", "wildlife", "snow", "fashion", "fields", "hike", "happiness", "animals", "kittens", "city", "forest", "beach", "mountain", "sunshine", "rain", "puppy", "puppies"];
 
 var lat = 39.9526;
 var long = -75.1652;
@@ -12,7 +12,6 @@ var map;
 
 var imageDetail = $("#imageDetail");
 var noPhotosAlert = $("#noPhotosAlert");
-
 
 initMap();
 
@@ -47,7 +46,7 @@ function initMap() {
 
     map.addListener('click', function(event) {
         $('#map').animate({
-            height: '35vh'
+            height: '50vh'
             }, 500, function () {
                 initMap();
                 map.setCenter(event.latLng);
@@ -114,7 +113,7 @@ function geocodeLatLng(geocoder, map, infowindow, lat, long) {
     geocoder.geocode({'location': latlng}, function(results, status) {
         if (status === 'OK') {
         if (results[1]) {
-            map.setZoom(6);
+            map.setZoom(8);
             var marker = new google.maps.Marker({
             position: latlng,
             map: map
